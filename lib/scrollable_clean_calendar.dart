@@ -16,6 +16,9 @@ class ScrollableCleanCalendar extends StatefulWidget {
   /// Scroll controller
   final ScrollController? scrollController;
 
+  //scroll direction
+  final Axis? scrollDirection;
+
   /// If is to show or not the weekdays in calendar
   final bool showWeekdays;
 
@@ -110,6 +113,7 @@ class ScrollableCleanCalendar extends StatefulWidget {
     this.dayTextStyle,
     this.dayRadius = 6,
     this.cardRadius = 0,
+    this.scrollDirection,
     required this.calendarController,
   }) : assert(layout != null ||
             (monthBuilder != null &&
@@ -132,6 +136,7 @@ class _ScrollableCleanCalendarState extends State<ScrollableCleanCalendar> {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      scrollDirection: widget.scrollDirection ?? Axis.vertical,
       controller: widget.scrollController,
       padding: widget.padding ??
           const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
